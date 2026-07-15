@@ -3,29 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ma Plateforme de Call Center</title>
+    <title>Call Center en Ligne</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f6f9;
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
-            padding: 20px;
-            text-align: center;
         }
         .container {
-            max-width: 500px;
-            background: white;
+            background-color: #1e1e1e;
             padding: 30px;
-            margin: 50px auto;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
         }
         h1 {
-            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
         }
         p {
-            color: #666;
-            font-size: 16px;
+            font-size: 1.1rem;
+            color: #b3b3b3;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        #statusBtn {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            border: 2px solid #888888;
+            background-color: transparent;
+            color: #ffffff;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 250px;
+            outline: none;
+        }
+        #statusBtn:hover {
+            opacity: 0.9;
         }
     </style>
 </head>
@@ -35,35 +59,43 @@
         <h1>Call Center en Ligne</h1>
         <p>Bienvenue sur votre espace de travail. Préparez votre casque et connectez-vous pour commencer à recevoir ou passer des appels.</p>
         
-        <!-- C'est ici qu'on va mettre le deuxième code de Zadarma (le bouton) juste après ! -->
-       <div id="myZadarmaCallmeWidget19143"></div><script>  var myZadarmaCallmeWidget19143;  var myZadarmaCallmeWidgetFn19143 = function() {    myZadarmaCallmeWidget19143 = new ZadarmaCallmeWidget("myZadarmaCallmeWidget19143");    myZadarmaCallmeWidget19143.create({"widgetId": "jxKLk71tz3PMeNAdnXmn8vncVkkvEghx9yJ1h1b4Lv3kemJc7RfneR4h1nmU9usb9SJPa57mt8s7tZXcPyh48eJ6nEGe38u5922ff102127b5d9c2d296412799e2d09", "sipId":"602132", "domElement":"myZadarmaCallmeWidget19143"}, {"shape":"square", "language":"fr", "width":"0", "dtmf":false, "font": "'Trebuchet MS','Helvetica CY',sans-serif", "color_call": "rgb(255, 255, 255)", "color_bg_call": "rgb(126, 211, 33)", "color_border_call": "rgb(191, 233, 144)", "is_custom_hover": 1, "color_call_hover": "rgb(255, 255, 255)", "bg_call_hover": "rgb(100, 167, 26)", "border_call_hover": "rgb(178, 211, 141)", "color_connection": "rgb(255, 255, 255)", "color_bg_connection": "rgb(33, 211, 166)", "color_border_connection": "rgb(144, 233, 211)", "color_calling": "rgb(255, 255, 255)", "color_border_calling": "rgb(255, 218, 128)", "color_bg_calling": "rgb(255, 181, 0)", "color_ended": "rgb(255, 255, 255)", "color_bg_ended": "rgb(164, 164, 164)", "color_border_ended": "rgb(210, 210, 210)"    });  };  if (window.addEventListener) {    window.addEventListener('load', myZadarmaCallmeWidgetFn19143, false);  } else if (window.attachEvent) {    window.attachEvent('onload', myZadarmaCallmeWidgetFn19143);  }</script>
+        <!-- BOUTON DE STATUT -->
+        <button id="statusBtn">⚪ Occupé</button>
+        
+        <!-- EMPLACEMENT DU WIDGET ZADARMA -->
+        <div id="myZadarmaCallmeWidget19143" style="margin-top: 20px;"></div>
     </div>
 
-    <!--<!-- CODE DE L'ÉTAPE 1 ZADARMA (CHARGEMENT DU SCRIPT) -->
-<div id="zadarmaScripts"></div>
-<script>
-(function() {
-    var script = document.createElement('script');
-    script.src = 'https://my.zadarma.com/callme/v2/19143/';
-    document.getElementById('zadarmaScripts').appendChild(script);
-}());
-</script>
+    <!-- CODE DE L'ÉTAPE 1 ZADARMA (CHARGEMENT DU SCRIPT) -->
+    <div id="zadarmaScripts"></div>
+    <script>
+    (function() {
+        var script = document.createElement('script');
+        script.src = 'https://my.zadarma.com/callme/v2/19143/';
+        document.getElementById('zadarmaScripts').appendChild(script);
+    }());
+    </script>
 
-<script>
-const statusBtn = document.querySelector('button');
+    <!-- CODE DU BOUTON DE STATUT (DISPONIBLE / OCCUPÉ) -->
+    <script>
+        const statusBtn = document.getElementById('statusBtn');
 
-statusBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  if (statusBtn.innerText.includes("Occupé")) {
-    statusBtn.innerHTML = "🟢 Disponible";
-    statusBtn.style.backgroundColor = "#22c55e";
-    statusBtn.style.color = "#ffffff";
-  } else {
-    statusBtn.innerHTML = "⚪ Occupé";
-    statusBtn.style.backgroundColor = "";
-    statusBtn.style.color = "";
-  }
-});
-</script>
+        statusBtn.addEventListener('click', (e) => {
+            e.preventDefault(); // Empêche le rechargement de la page
+            
+            if (statusBtn.innerText.includes("Occupé")) {
+                statusBtn.innerHTML = "🟢 Disponible";
+                statusBtn.style.backgroundColor = "#22c55e";
+                statusBtn.style.borderColor = "#22c55e";
+                statusBtn.style.color = "#ffffff";
+            } else {
+                statusBtn.innerHTML = "⚪ Occupé";
+                statusBtn.style.backgroundColor = "transparent";
+                statusBtn.style.borderColor = "#888888";
+                statusBtn.style.color = "#ffffff";
+            }
+        });
+    </script>
+
 </body>
-</html> 
+</html>
