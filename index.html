@@ -47,7 +47,21 @@
         script.src = 'https://my.zadarma.com/callmewidget/v2.0.9/loader.js';
         document.getElementById('zadarmaScripts').appendChild(script);
     }());
-    </script>
+    </script
+    <script>
+  const statusBtn = document.querySelector('button');
 
+  statusBtn.addEventListener('click', () => {
+    if (statusBtn.innerText.includes("Occupé")) {
+      statusBtn.innerHTML = "🟢 Disponible";
+      statusBtn.style.backgroundColor = "#22c55e";
+      statusBtn.style.color = "#ffffff";
+    } else {
+      statusBtn.innerHTML = "⚪ Occupé";
+      statusBtn.style.backgroundColor = "";
+      statusBtn.style.color = "";
+    }
+  });
+</script>
 </body>
 </html>
